@@ -52,7 +52,7 @@ def isNone(var, strVar):
     if (var == None):
         raise Exception('There are no ' + strVar + ' in request!')
 
-def create_publisher(publisherInfo, aKey):
+def create_publisher(publisherInfo, aKey, update = False):
     try:
         if (isAccessConfirm(aKey) == False):
            raise Exception('You do not have access to this action!')
@@ -60,7 +60,7 @@ def create_publisher(publisherInfo, aKey):
         pId = publisherInfo.get('pId')
         isNone(pId, 'pId')
 
-        if (get_publisher_by_id(pId) != None):
+        if (update == False) and (get_publisher_by_id(pId) != None):
             raise Exception('Publisher with this id is already exists!')
 
         pName = publisherInfo.get('pName')

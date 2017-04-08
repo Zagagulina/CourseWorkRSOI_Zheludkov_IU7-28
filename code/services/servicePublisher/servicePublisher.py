@@ -54,6 +54,21 @@ def publisher_create():
         'publisherId': str(pId)
     })
 
+@servicePublisher.route('/servicePublisher/publisher', methods=['PUT'])
+def publisher_change():
+    logging.info("pup servicePublisher/publisher call")
+    try:
+        aKey = get_token_from_header(request)
+        publisherInfo = request.form
+        pId = create_publisher(publisherInfo, aKey, update=True)
+    except Exception as exc:
+        return bad_request('Error! Can not change publisher info!' + exc.args[0])
+
+    logging.info("Publisher info was changed!")
+    return jsonify({
+        'publisherId': str(pId)
+    })
+
 @servicePublisher.route('/servicePublisher/publisher/<pId>', methods=['DELETE'])
 def publisher_delete(pId):
     logging.info("delete /servicePublisher/publisher/<pId> call")
