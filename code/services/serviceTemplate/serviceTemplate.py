@@ -7,12 +7,12 @@ import logging.handlers
 serviceTemplate = Blueprint('serviceTemplate', __name__, template_folder='templates')
 
 @serviceTemplate.route('/serviceTemplate/publishersId', methods=['GET'])
-def zoos():
+def publishersId():
     logging.info("get /serviceTemplate/publishersId call")
     try:
         page, size = get_page_and_size(request)
         # все проверки пройдены успешно
-        logging.info("In zoos() all import parameters are correct!")
+        logging.info("In publishersId() all import parameters are correct!")
         start, end = get_start_and_end(page, size)
 
         list = get_publishersId_list()
@@ -30,8 +30,8 @@ def zoos():
         return bad_request(exc.args[0])
 
 @serviceTemplate.route('/serviceTemplate/templateInfo/<pId>', methods=['GET'])
-def info_publisher_by_id(pId):
-    logging.info("get /servicePublisher/publisherInfo/<pId> call")
+def info_template_by_id(pId):
+    logging.info("get /serviceTemplate/templateInfo/<pId> call")
     curTemplate = get_template_by_id(pId)
     if (curTemplate == None):
         return bad_request('Error! {anId} in request GET /serviceTemplate/templateInfo/<pId> should be valid!')
@@ -41,44 +41,44 @@ def info_publisher_by_id(pId):
 
 @serviceTemplate.route('/serviceTemplate/template', methods=['POST'])
 def template_create():
-    logging.info("post servicePublisher/publisher call")
+    logging.info("post /serviceTemplate/template call")
     try:
         aKey = get_token_from_header(request)
-        publisherInfo = request.form
-        pId = create_publisher(publisherInfo, aKey)
+        templateInfo = request.json
+        pId = create_template(templateInfo, aKey)
     except Exception as exc:
-        return bad_request('Error! Can not add publisher info!' + exc.args[0])
+        return bad_request('Error! Can not add template!' + exc.args[0])
 
-    logging.info("Publisher info was added!")
+    logging.info("Template was added!")
     return jsonify({
         'publisherId': str(pId)
     })
 
-@serviceTemplate.route('/servicePublisher/publisher', methods=['PUT'])
-def publisher_change():
-    logging.info("pup servicePublisher/publisher call")
+@serviceTemplate.route('/serviceTemplate/template', methods=['PUT'])
+def template_change():
+    logging.info("put /serviceTemplate/template call")
     try:
         aKey = get_token_from_header(request)
-        publisherInfo = request.form
-        pId = create_publisher(publisherInfo, aKey, update=True)
+        publisherInfo = request.json
+        pId = create_template(publisherInfo, aKey, update=True)
     except Exception as exc:
-        return bad_request('Error! Can not change publisher info!' + exc.args[0])
+        return bad_request('Error! Can not change template info!' + exc.args[0])
 
-    logging.info("Publisher info was changed!")
+    logging.info("Template was changed!")
     return jsonify({
         'publisherId': str(pId)
     })
 
-@serviceTemplate.route('/servicePublisher/publisher/<pId>', methods=['DELETE'])
-def publisher_delete(pId):
-    logging.info("delete /servicePublisher/publisher/<pId> call")
+@serviceTemplate.route('/serviceTemplate/template/<pId>', methods=['DELETE'])
+def template_delete(pId):
+    logging.info("delete /serviceTemplate/template/<pId> call")
     try:
         aKey = get_token_from_header(request)
-        success = delete_publisher(pId, aKey)
+        success = delete_template(pId, aKey)
     except Exception as exc:
         return bad_request(exc.args[0])
 
-    logging.info("Publisher info was deleted!")
+    logging.info("Template was deleted!")
     return jsonify({
         'note': success
     })

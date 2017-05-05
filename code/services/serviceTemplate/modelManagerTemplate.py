@@ -26,7 +26,7 @@ def get_templates_list(template):
 
 def get_info_template(template):
     return {
-            'id': str(template.publisherId),
+            'publisherId': str(template.publisherId),
             'templateList': get_templates_list(template)
         }
 
@@ -37,62 +37,70 @@ def get_template_by_id(pId):
         currentTemplate = None
     return currentTemplate
 
-def delete_publisher(pId, aKey):
+def delete_template(pId, aKey):
     try:
         if (isAccessConfirm(aKey) == False):
             raise Exception('You do not have access to this action!')
 
-        curPublisher = get_publisher_by_id(pId)
+        curPublisher = get_template_by_id(pId)
         if (curPublisher == None):
-            raise Exception('There are no such publisher!')
+            raise Exception('There are no such template!')
 
         curPublisher.delete()
-        success = 'Publisher info was deleted!'
+        success = 'Template was deleted!'
     except Exception as exc:
-        raise Exception('Can not delete publisher info from base!' + exc.args[0])
+        raise Exception('Can not delete template from base!' + exc.args[0])
     return success
 
 def isNone(var, strVar):
     if (var == None):
         raise Exception('There are no ' + strVar + ' in request!')
 
-def create_publisher(publisherInfo, aKey, update = False):
+def isTemplateElEQ(a, b):
+    if (a['templateRegExp'] == b['templateRegExp']):
+        return True
+    return False
+
+def getAddedTemplatesList(list):
+    listWithoutDuplicates = []
+    for el in list:
+        inList = False
+        for newEl in listWithoutDuplicates:
+            if isTemplateElEQ(el, newEl):
+                inList = True
+                break
+        if (inList == False):
+            listWithoutDuplicates.append(TemplateElement(templateRegExp = el['templateRegExp'],
+                                                         templateExample = el['templateExample']))
+
+    return listWithoutDuplicates
+
+def create_template(templateInfo, aKey, update = False):
     try:
         if (isAccessConfirm(aKey) == False):
            raise Exception('You do not have access to this action!')
 
-        pId = publisherInfo.get('pId')
+        pId = templateInfo.get('pId')
         isNone(pId, 'pId')
 
-        if (update == False) and (get_publisher_by_id(pId) != None):
-            raise Exception('Publisher with this id is already exists!')
+        if (update == True) and (get_template_by_id(pId) == None):
+            raise Exception('Template with this publisher id is not exists!')
+        elif (update == False) and (get_template_by_id(pId) != None):
+            raise Exception('Template with this publisher id is already exists!')
 
-        pName = publisherInfo.get('pName')
-        isNone(pName, 'pName')
+        templateList = templateInfo['templateList']
+        isNone(templateList, 'templateList')
 
-        pAddress = publisherInfo.get('pAddress')
-        if (pAddress == ''): pAddress = None
+        if (len(templateList) < 1):
+            raise Exception('Template list should consist at least one element!')
 
-        pPhoneNumber = publisherInfo.get('pPhoneNumber')
-        isNone(pPhoneNumber, 'pPhoneNumber')
+        try:
+            clearTemplateList = getAddedTemplatesList(templateList)
+        except:
+            raise Exception('Template list should consist only TemplateElement with len > 1!')
 
-        if (isPhoneNumber(pPhoneNumber) == False):
-            raise Exception("Incorrect phone number!")
-
-        pEmail = publisherInfo.get('pEmail')
-        if (pEmail == ''): pEmail = None
-
-        pURL = publisherInfo.get('pURL')
-        if (pURL == ''): pURL = None
-
-        pTextRule = publisherInfo.get('pTextRule')
-        isNone(pTextRule, 'pTextRule')
-
-        publisher = Publisher(publisherId = pId, publisherName = pName, publisherAddress = pAddress,
-                              publisherPhoneNumber = pPhoneNumber, publisherEmail = pEmail,
-                              publisherURL = pURL, publisherTextRule = pTextRule)
-
-        publisher.save()
+        template = Templates(publisherId = pId, templateList = clearTemplateList)
+        template.save()
     except Exception as exp:
         errMessage = ''
         try:
@@ -100,5 +108,5 @@ def create_publisher(publisherInfo, aKey, update = False):
                 errMessage += el + ":" + exp.errors[el].args[0] + "! "
         except:
             errMessage = ''
-        raise Exception("There are incorrect publisherInfoData!" + exp.args[0] + errMessage)
+        raise Exception("There are incorrect templateInfoData!" + exp.args[0] + errMessage)
     return pId
