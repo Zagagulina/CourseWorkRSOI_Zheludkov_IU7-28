@@ -1,0 +1,29 @@
+.error_section {
+  margin-left: 12%;
+  margin-right: 12%;
+  margin-top: 60px;
+}
+.error_section .main_article_h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-family: 'Helvetica';
+  font-size: 22px;
+  font-weight: normal;
+  text-align: center;
+}
+.error_section .error_btn {
+  background: linear-gradient(to top, #5a5a5a 0%, #a7a7a7 100%);
+  font-size: 18px;
+  /* Размер шрифта */
+  padding: 10px 20px;
+  /* Поля вокруг текста */
+  color: #fff;
+  /* Цвет текста */
+  border-radius: 8px;
+  /* Радиус скругления */
+  width: 80%;
+  margin-left: 10%;
+}
+.error_section .error_btn:hover {
+  background: linear-gradient(to top, #a7a7a7 0%, #eaeaea 100%);
+}

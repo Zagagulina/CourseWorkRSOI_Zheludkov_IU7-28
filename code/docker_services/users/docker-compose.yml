@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+    web:
+        build: .
+        command: python -u serviceUser/server.py
+        ports:
+            - "4000:4000"
+        container_name: users_web
+        
+    db:
+        image: mongo
+        ports:
+            - "27020:27017"
+        container_name: users_mongo
+     
+networks:
+    default:
+        external:
+            name: bibliography-net

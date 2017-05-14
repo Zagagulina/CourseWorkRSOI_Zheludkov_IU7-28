@@ -1,0 +1,88 @@
+@nav_color_black: #000000;
+@gray: #a7a7a7;
+@red: #ff0000;
+@dark-gray: #5a5a5a;
+@light-gray: #eaeaea;
+@green: #72AB00;
+@header-font: 'Helvetica bold';
+@header-font-about: 'Helvetica';
+@motivation-font: 'Segoe Print';
+@header-font_light: 'Helvetica Light';
+@text_color: #494949;
+@margin-left: 12%;
+@margin-right: 12%;
+
+.nav_user
+{
+    color : @green !important;
+    border-top: 4px solid @green !important;              
+}
+
+.authorized_section
+{
+    margin-left: @margin-left;
+    margin-right: @margin-right;
+    margin-top: 60px;
+    
+    .main_article_h2
+    {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        font-family: @header-font-about;
+        font-size: 44px;
+        font-weight: normal;
+        color: @green;
+    }
+           
+    .authorized_btn
+        {
+        background: linear-gradient(to top, @dark-gray 0%, @gray 100%);
+        font-size: 18px; /* Размер шрифта */
+        padding: 10px 20px; /* Поля вокруг текста */
+        color: #fff; /* Цвет текста */
+        border-radius: 8px; /* Радиус скругления */
+    }
+    .authorized_btn:hover
+        {
+        background: linear-gradient(to top, @gray 0%, @light-gray 100%);
+    }
+    
+    .authorized_fieldset
+        {
+        width: 70%;
+        
+        .authorized_fieldset_text, .authorized_fieldset_legend
+        {
+            font-family: @header-font_light;        
+            color: @text_color;
+            font-size: 18px;
+        }
+        
+        .error_text
+        {
+            color : @red;
+            width: 60%;
+        }
+        
+        .login_input
+                {
+            width: 60%;
+        }
+        .email_input
+                {
+            width: 60%;
+        }        
+        .password_input
+                {   
+            width: 60%;
+        }
+        .access_input
+                {   
+            width: 60%;
+        }
+        .other_input
+                {
+            width: 60%;
+        }
+    }   
+}

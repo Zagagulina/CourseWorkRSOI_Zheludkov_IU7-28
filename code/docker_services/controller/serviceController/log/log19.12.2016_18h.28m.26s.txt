@@ -1,0 +1,17 @@
+[2016-12-19 18:28:27,483] {_internal.py:87} INFO -  * Running on http://127.0.0.1:4000/ (Press CTRL+C to quit)
+[2016-12-19 18:42:14,060] {serviceUser.py:100} INFO - post /serviceUser/oauth2/access_token call
+[2016-12-19 18:42:14,061] {serviceUser.py:110} INFO - Grand_type is valid!
+[2016-12-19 18:42:14,372] {serviceUser.py:118} INFO - Key and SecretKey are valid!
+[2016-12-19 18:42:14,375] {controllerBasic.py:12} INFO - Status code is 404 with message: There are no such refreshToken!
+[2016-12-19 18:42:14,376] {_internal.py:87} INFO - 127.0.0.1 - - [19/Dec/2016 18:42:14] "POST /serviceUser/oauth2/access_token HTTP/1.1" 404 -
+[2016-12-19 18:42:14,398] {serviceUser.py:40} INFO - get /serviceUser/appInfo/<appKey> call
+[2016-12-19 18:42:14,401] {serviceUser.py:45} INFO - AppKey is valid!
+[2016-12-19 18:42:14,403] {_internal.py:87} INFO - 127.0.0.1 - - [19/Dec/2016 18:42:14] "GET /serviceUser/appInfo/nfjkaforpieuf HTTP/1.1" 200 -
+[2016-12-19 18:42:47,356] {serviceUser.py:100} INFO - post /serviceUser/oauth2/access_token call
+[2016-12-19 18:42:47,357] {serviceUser.py:110} INFO - Grand_type is valid!
+[2016-12-19 18:42:47,664] {serviceUser.py:118} INFO - Key and SecretKey are valid!
+[2016-12-19 18:42:47,666] {controllerBasic.py:12} INFO - Status code is 404 with message: There are no such refreshToken!
+[2016-12-19 18:42:47,667] {_internal.py:87} INFO - 127.0.0.1 - - [19/Dec/2016 18:42:47] "POST /serviceUser/oauth2/access_token HTTP/1.1" 404 -
+[2016-12-19 18:42:47,688] {serviceUser.py:40} INFO - get /serviceUser/appInfo/<appKey> call
+[2016-12-19 18:42:47,692] {serviceUser.py:45} INFO - AppKey is valid!
+[2016-12-19 18:42:47,694] {_internal.py:87} INFO - 127.0.0.1 - - [19/Dec/2016 18:42:47] "GET /serviceUser/appInfo/nfjkaforpieuf HTTP/1.1" 200 -

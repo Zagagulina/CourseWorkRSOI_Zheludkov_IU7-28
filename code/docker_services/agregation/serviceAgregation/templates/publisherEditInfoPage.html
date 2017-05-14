@@ -1,0 +1,86 @@
+﻿{% extends "base.html" %}
+{% block content %}
+     <section class = "user_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Изменение информации о Вас!</h2>
+            <p class = "main_text">
+                На данной странице Вы можете поменять информацию о Вас.
+            </p>
+         </article>
+    </section>
+    <section class = "authorized_section">
+        <dl>
+            <dt class = "info_section_dt">Информация для входа в систему:</dt>
+                <dd class = "main_text">
+                    <form action="{{ editAuthUrl }}" method="post" name="login">
+                        {{formAuth.hidden_tag()}}
+                        <fieldset class = "authorized_fieldset">
+                            <legend class = "authorized_fieldset_legend">Логин и пароль:</legend>
+                            <p class = "main_text error_text">
+                                {{ messageAuth }}
+                            </p>
+                            {% if authShow == True %}
+                                <div class="authorized_fieldset_text">
+                                    Логин*: <div class="error_text">{{ formAuth.errors.userLogin }}</div>
+                                    {{ formAuth.userLogin(class = "login_input", size = 80) }}<br><br>
+
+                                    Пароль*:<div class="error_text">{{ formAuth.errors.userPassword }}</div>
+                                    {{ formAuth.userPassword(class = "password_input", size = 80) }}<br><br>
+                                </div>
+                                <p class="main_text">* отмечены поля, обязательные для заполнения</p>
+                            {% endif %}
+                        </fieldset>
+                        {% if authShow == True %}
+                            <input class = "authorized_btn" type=submit value="Применить">
+                            <input class = "authorized_btn" type=reset value="Начать с начала">
+                        {% endif %}
+                    </form>
+                </dd>
+            <dt class = "info_section_dt">Справочная информация:</dt>
+                <dd class = "main_text">
+                    <form action="{{ editInfoUrl }}" method="post" name="login">
+                        {{formInfo.hidden_tag()}}
+                        <fieldset class = "authorized_fieldset">
+                            <legend class = "authorized_fieldset_legend">Информация об издательстве:</legend>
+                            <p class = "main_text error_text">
+                                {{ messageInfo }}
+                            </p>
+                            {% if infoShow == true %}
+                                <div class="authorized_fieldset_text">
+                                    <div hidden = 'true'>{{ formInfo.userId }}</div>
+                                    Имя*: <div class="error_text">{{ formInfo.errors.userName }}</div>
+                                    {{ formInfo.userName(class = "other_input", size = 80) }}<br><br>
+
+                                    Email:<div class="error_text">{{ formInfo.errors.userEmail }}</div>
+                                    {{ formInfo.userEmail(class = "email_input", size = 80) }}<br><br>
+
+                                    Адрес:<div class="error_text">{{ formInfo.errors.userAddres }}</div>
+                                    {{ formInfo.userAddres(class = "other_input", size = 80) }}<br><br>
+
+                                    Номер телефона*:<div class="error_text">{{ formInfo.errors.userPhonenumber }}</div>
+                                    {{ formInfo.userPhonenumber(class = "other_input", size = 80) }}<br><br>
+
+                                    Сайт:<div class="error_text">{{ formInfo.errors.userURL }}</div>
+                                    {{ formInfo.userURL(class = "other_input", size = 80) }}<br><br>
+
+                                    URL текстовых правил оформления*: <div class="error_text">{{ formInfo.errors.userTextRule }}</div>
+                                    {{ formInfo.userTextRule(class = "other_input", size = 80) }}<br><br>
+                                </div>
+                                <p class="main_text">* отмечены поля, обязательные для заполнения</p>
+                            {% endif %}
+                        </fieldset>
+                        {% if infoShow == true %}
+                            <input class = "authorized_btn" type=submit value="Применить">
+                            <input class = "authorized_btn" type=reset value="Начать с начала">
+                        {% endif %}
+                    </form>
+                </dd>
+            <dt class = "info_section_dt">Выберите требуемое действие</dt>
+                <dd class = "main_text">
+                    <form action="{{ last_url }}" method="get">
+                        <input class = "user_btn" type="submit" value="Назад" />
+                    </form>
+                </dd>
+        </dl>
+    </section>
+{% endblock %}

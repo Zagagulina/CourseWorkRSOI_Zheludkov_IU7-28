@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/{{css_name}}.css" />
+        <title>Сервис по проверке списка литературы!</title>
+    </head>
+    <body ng-app="BibliographyChecker">
+        {% include "nav.html" %}
+        {% block content %}{% endblock %}
+        <footer class = "main_footer">
+            <p class = "main_footer_text">© 2017 by Желудков Антон
+                <a href="mailto:zhantonv@gmail.com">
+                   zhantonv@gmail.com
+                </a>
+            </p>
+		</footer>
+        <script type="text/javascript" src="/static/components/angular/angular.js"></script>
+        <script type="text/javascript" src="/static/js/app.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/checkController.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/resultController.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/publisherInfoController.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/templateChooseController.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/checkTemplateController.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/moderatedController.js"></script>
+        <script type="text/javascript" src="/static/js/controllers/applicationChooseController.js"></script>
+	</body>
+</html>

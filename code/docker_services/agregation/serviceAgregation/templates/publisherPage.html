@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "user_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Это Ваша страница!</h2>
+            <p class = "main_text">
+                После регистрации на нашем сервисе вы получаете свою страницу. Здесь вы можете посмотреть сведения
+                о вашем издательстве, отредактировать их а так же задашь шаблоны проверки списка литературы для поступающих
+                к публикации работ.
+            </p>
+         </article>
+    </section>
+    <section class = "user_info_section" ng-controller = "publisherInfoController" id = 'angularInitPublisher'
+             ng-init="pId = '{{ publiserId }}'">
+        <dl class = "user_info_section_dl">
+            <dt class = "user_info_section_dt">Немного сведений о Вас</dt>
+            <dd class = "main_text">
+                Ниже представлена самая общая информация, необходимая для того, чтобы Вас узнать:
+                <div class="error_text" ng-show="error == true">Произошла ошибка! Сервис издателей сейчас недоступен!
+                Попробуйте повторить запрос позднее!</div>
+                <ul class = "main_ul" ng-show="showInfo == true">
+                    <li class = "main_ul_li" ng-if="selected.name">Имя: // selected.name //</li>
+                    <li class = "main_ul_li" ng-if="selected.address">Адрес: // selected.address //</li>
+                    <li class = "main_ul_li" ng-if="selected.phoneNumber">Телефон: // selected.phoneNumber //</li>
+                    <li class = "main_ul_li" ng-if="selected.email">Email: // selected.email //</li>
+                    <li class = "main_ul_li" ng-if="selected.URL">Сайт:
+                        <a href="// selected.URL //">// selected.URL //</a>
+                    </li>
+                    <li class = "main_ul_li" ng-if="selected.textRule">Правила оформления:
+                        <a href="// selected.textRule //">// selected.textRule //</a>
+                    </li>
+                </ul>
+            </dd>
+            <dt class = "user_info_section_dt">Доступные Вам действия</dt>
+            <dd class = "main_text">
+                Здесь мы перечислям те возможности, которые можем предложить:
+                <div>
+                    <form action="{{ ref_chenge_Info }}" method="get">
+                        <input class = "user_btn" type="submit" value="Изменить информацию о себе" />
+                    </form>
+                    <form action="{{ ref_change_tempalte }}" method="get">
+                        <input class = "user_btn" type="submit" value="Изменить шаблоны проверки" />
+                    </form>
+                    <form action="{{ ref_check_tempalte }}" method="get">
+                        <input class = "user_btn" type="submit" value="Проверить шаблоны проверки" />
+                    </form>
+                    <form action="{{ ref_logout }}" method="get">
+                        <input class = "user_btn" type="submit" value="Выйти из системы" />
+                    </form>
+                </div>
+            </dd>
+        </dl>
+    </section>
+{% endblock %}

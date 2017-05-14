@@ -1,0 +1,47 @@
+﻿{% extends "base.html" %}
+{% block content %}
+     <section class = "user_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Изменение информации о Вас!</h2>
+            <p class = "main_text">
+                На данной странице Вы можете поменять информацию о Вас.
+            </p>
+         </article>
+    </section>
+    <section class = "authorized_section">
+        <dl>
+            <dt class = "info_section_dt">Информация для входа в систему:</dt>
+                <dd class = "main_text">
+                    <form action="{{ editAuthUrl }}" method="post" name="login">
+                        {{formAuth.hidden_tag()}}
+                        <fieldset class = "authorized_fieldset">
+                            <legend class = "authorized_fieldset_legend">Логин и пароль:</legend>
+                            <p class = "main_text error_text">
+                                {{ messageAuth }}
+                            </p>
+                            {% if authShow == True %}
+                                <div class="authorized_fieldset_text">
+                                    Логин*: <div class="error_text">{{ formAuth.errors.userLogin }}</div>
+                                    {{ formAuth.userLogin(class = "login_input", size = 80) }}<br><br>
+
+                                    Пароль*:<div class="error_text">{{ formAuth.errors.userPassword }}</div>
+                                    {{ formAuth.userPassword(class = "password_input", size = 80) }}<br><br>
+                                </div>
+                                <p class="main_text">* отмечены поля, обязательные для заполнения</p>
+                            {% endif %}
+                        </fieldset>
+                        {% if authShow == True %}
+                            <input class = "authorized_btn" type=submit value="Применить">
+                            <input class = "authorized_btn" type=reset value="Начать с начала">
+                        {% endif %}
+                    </form>
+                </dd>
+            <dt class = "info_section_dt">Выберите требуемое действие</dt>
+                <dd class = "main_text">
+                    <form action="{{ last_url }}" method="get">
+                        <input class = "user_btn" type="submit" value="Назад" />
+                    </form>
+                </dd>
+        </dl>
+    </section>
+{% endblock %}

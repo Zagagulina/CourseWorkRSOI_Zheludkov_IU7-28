@@ -1,0 +1,59 @@
+.nav_user {
+  color: #72AB00 !important;
+  border-top: 4px solid #72AB00 !important;
+}
+.authorized_section {
+  margin-left: 12%;
+  margin-right: 12%;
+  margin-top: 60px;
+}
+.authorized_section .main_article_h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-family: 'Helvetica';
+  font-size: 44px;
+  font-weight: normal;
+  color: #72AB00;
+}
+.authorized_section .authorized_btn {
+  background: linear-gradient(to top, #5a5a5a 0%, #a7a7a7 100%);
+  font-size: 18px;
+  /* Размер шрифта */
+  padding: 10px 20px;
+  /* Поля вокруг текста */
+  color: #fff;
+  /* Цвет текста */
+  border-radius: 8px;
+  /* Радиус скругления */
+}
+.authorized_section .authorized_btn:hover {
+  background: linear-gradient(to top, #a7a7a7 0%, #eaeaea 100%);
+}
+.authorized_section .authorized_fieldset {
+  width: 70%;
+}
+.authorized_section .authorized_fieldset .authorized_fieldset_text,
+.authorized_section .authorized_fieldset .authorized_fieldset_legend {
+  font-family: 'Helvetica Light';
+  color: #494949;
+  font-size: 18px;
+}
+.authorized_section .authorized_fieldset .error_text {
+  color: #ff0000;
+  width: 60%;
+}
+.authorized_section .authorized_fieldset .login_input {
+  width: 60%;
+}
+.authorized_section .authorized_fieldset .email_input {
+  width: 60%;
+}
+.authorized_section .authorized_fieldset .password_input {
+  width: 60%;
+}
+.authorized_section .authorized_fieldset .access_input {
+  width: 60%;
+}
+.authorized_section .authorized_fieldset .other_input {
+  width: 60%;
+}

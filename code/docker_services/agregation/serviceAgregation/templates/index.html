@@ -1,0 +1,60 @@
+﻿{% extends "base.html" %}
+{% block content %}
+    <section class = "main_section">
+        <div class = "main_section_flex">
+            <img class = "main_img" src="/static/img/bookworm.jpg" alt="Наш червячёк куда-то отошёл, но скоро вернётся"
+                 title = "Я Вам помогу!">
+            <div class = "right_article_and_button">
+                <article class = "main_article">
+                    <h2 class = "main_article_h1">Как это?</h2>
+                    <h3 class = "main_article_h3">Давайте разберёмся!</h3>
+                    <p class = "main_text">
+                        При написании любой научной работы в заключительной её части
+                        должен располагаться список используемых литературных источников.
+                        Его необходимо оформить в соответствии со стандартами, в которых,
+                        зачастую, имеются допущения. Поэтому точные правила устанавливает
+                        издательство, куда работа будет передана для последующей публикации.
+                        Праивльность оформления библиографического списка - одна из
+                        основных проблем, из-за которых труд возвращают на доработку. Наш сервис
+                        призван автоматизировать эту задачу! Теперь Вы сами можете проверить
+                        свой список литературы на соответсвие правилам оформления конкретного
+                        издательства.
+                        <br>Хотите попробовать? Жмите на кнопку ниже...
+                    </p>
+                </article>
+                <form action="{{ ref_auth }}" method="get">
+                    <input class = "main_why_article_btn"  type="submit" value="Попробовать прямо сейчас!" />
+                </form>
+            </div>
+        </div>
+        <article class = "motivation_string_article">
+            <h2 class = "motivation_string_h2">
+                Мы считаем, что Ваше время - бесценно, поэтому его экономия наша основная задача!
+            </h2>
+        </article>
+    </section>
+    <section class = "main_footer_section">
+        <article class = "main_article_footer">
+            <h4 class = "main_article_h4">Нужно ли Вам это, если вы автор?</h4>
+            <p class = "main_text">
+                Да, так как теперь работа будет поступать в публикацию быстрее, и
+                Вам не придётся тратить часы, чтобы понять какая строчка списка
+                литературы оформлена не правильно и почему.
+            </p>
+        </article>
+        <article class = "main_article_footer">
+            <h4 class = "main_article_h4">Наш девиз</h4>
+            <p class = "main_text">
+                «Предел совершенству есть и мы к нему стремимся!»
+            </p>
+        </article>
+        <article class = "main_article_footer">
+            <h4 class = "main_article_h4">Нужно ли Вам это, если вы издатель?</h4>
+            <p class = "main_text">
+                Да, так как это сэкономит Ваше время, поскольку
+                поступаемые работы уже будут иметь грамотно оформленный список
+                литературы.
+            </p>
+        </article>
+    </section>
+{% endblock %}

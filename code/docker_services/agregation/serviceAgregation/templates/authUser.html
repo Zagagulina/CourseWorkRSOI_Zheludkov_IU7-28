@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+{% block content %}
+    <section class = "authorized_section">
+        <h2 class = "main_article_h2">{{ appText }}</h2>
+        <form action="" method="post" name="login">
+            {{form.hidden_tag()}}
+            <fieldset class = "authorized_fieldset">
+                <legend class = "authorized_fieldset_legend">Введите логин и пароль:</legend>
+                <p class = "main_text error_text">
+                    {{ message }}
+                </p>
+                <div class="authorized_fieldset_text">
+                    Логин:  <div class="error_text">{{ form.errors.userLogin }}</div>
+                    {{ form.userLogin(class = "login_input", size = 80) }}<br><br>
+
+                    Пароль:  <div class="error_text">{{ form.errors.userPassword }}</div>
+                    {{ form.userPassword(class = "password_input", size = 80) }}<br><br>
+                </div>
+            </fieldset>
+            <input class = "authorized_btn" type=submit value="Авторизоваться">
+            <input class = "authorized_btn" type=reset value="Начать с начала">
+        </form>
+        <form action="{{ ref_new_user }}" method="get">
+            <input class = "authorized_btn" type="submit" value="Зарегистрироваться" />
+        </form>
+    </section>
+{% endblock %}

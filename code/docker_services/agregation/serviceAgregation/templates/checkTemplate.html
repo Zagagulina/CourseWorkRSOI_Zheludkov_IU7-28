@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "check_main_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Тестирование Ваших шаблонов</h2>
+            <p class = "main_text">
+                На этой странице Вы можете протестировать работу Ваших шаблонов проверки библиографического
+                списка. Для этого Вам необходимо скопировать Ваш библиографический список в соответсвующее
+                поле ввода без нумерации работ так, чтобы каждая ссылка начиналась с новой строки, и нажать
+                кнопку "Приверить".
+            </p>
+         </article>
+    </section>
+    <section class = "check_info_section" ng-controller = "checkTemplateController">
+            <fieldset class = "total_fieldset" ng-disabled="waiting">
+            <form class = "total_fieldset"   action="{{ check_url }}" method="post">
+                <dl>
+                <dt class = "publisher_info_section_dt">Введите список литературы для проверки</dt>
+                    <dd class = "main_text">
+                        ВНИМАНИЕ! Список литературы надо вводить без нумерации. Каждая следующая позиция в списке
+                        должна начинаться с новой строки!
+                        <div class = "bibliography_list">Список литературы: <br>
+                            <textarea class = "bibliography_input"
+                                      name = "bibliography" rows = 7 cols = 50
+                                      wrap = 'off'
+                                      ng-model="bibliography"></textarea>
+                        </div>
+                    </dd>
+                <dt class = "publisher_info_section_dt">Выберите требуемое действие</dt>
+                    <dd class = "main_text">
+                        <div ng-show="bibliography.length == 0">Нечего проверять! Список литературы пуст!</div>
+                        <input class = "user_btn" type="submit"
+                                ng-disabled="bibliography.length == 0" value="Проверить список литературы">
+                    </dd>
+                </dl>
+                <input type="hidden" name="selectedPublisher" value="{{ publisher_id }}" >
+            </form>
+            <dl>
+            <dd class = "main_text">
+                <form action="{{ last_url }}" method="get">
+                    <input class = "user_btn" type="submit" value="Назад" />
+                </form>
+            </dd>
+            </dl>
+            </fieldset>
+    </section>
+{% endblock %}

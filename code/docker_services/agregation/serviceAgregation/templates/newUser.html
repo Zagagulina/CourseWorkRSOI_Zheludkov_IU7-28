@@ -1,0 +1,46 @@
+﻿{% extends "base.html" %}
+{% block content %}
+    <section class = "authorized_section">
+        <h2 class = "main_article_h2">Регистрация в системе</h2>
+        <form action="" method="post" name="login">
+            {{form.hidden_tag()}}
+            <fieldset class = "authorized_fieldset">
+                <legend class = "authorized_fieldset_legend">Введите немного информации о Вас:</legend>
+                <p class = "main_text error_text">
+                    {{ message }}
+                </p>
+                <div class="authorized_fieldset_text">
+                    Имя*: <div class="error_text">{{ form.errors.userName }}</div>
+                    {{ form.userName(class = "other_input", size = 80) }}<br><br>
+
+                    Логин*: <div class="error_text">{{ form.errors.userLogin }}</div>
+                    {{ form.userLogin(class = "login_input", size = 80) }}<br><br>
+
+                    Пароль*:<div class="error_text">{{ form.errors.userPassword }}</div>
+                    {{ form.userPassword(class = "password_input", size = 80) }}<br><br>
+
+                    Email:<div class="error_text">{{ form.errors.userEmail }}</div>
+                    {{ form.userEmail(class = "email_input", size = 80) }}<br><br>
+
+                    Адрес:<div class="error_text">{{ form.errors.userAddres }}</div>
+                    {{ form.userAddres(class = "other_input", size = 80) }}<br><br>
+
+                    Номер телефона*:<div class="error_text">{{ form.errors.userPhonenumber }}</div>
+                    {{ form.userPhonenumber(class = "other_input", size = 80) }}<br><br>
+
+                    Сайт:<div class="error_text">{{ form.errors.userURL }}</div>
+                    {{ form.userURL(class = "other_input", size = 80) }}<br><br>
+
+                    URL текстовых правил оформления*: <div class="error_text">{{ form.errors.userTextRule }}</div>
+                    {{ form.userTextRule(class = "other_input", size = 80) }}<br><br>
+                </div>
+                <p class="main_text">* отмечены поля, обязательные для заполнения</p>
+            </fieldset>
+            <input class = "authorized_btn" type=submit value="Зарегистрироваться">
+            <input class = "authorized_btn" type=reset value="Начать с начала">
+        </form>
+        <form action="{{ last_url }}" method="get">
+            <input class = "authorized_btn" type="submit" value="Назад" />
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,127 @@
+@nav_color_black: #000000;
+@gray: #a7a7a7;
+@dark-gray: #5a5a5a;
+@light-gray: #eaeaea;
+@green: #72AB00;
+@header-font: 'Helvetica bold';
+@motivation-font: 'Segoe Print';
+@header-font_light: 'Helvetica Light';
+@text_color: #494949;
+@margin-left: 12%;
+@margin-right: 12%;
+
+.nav_main
+{
+    color : @green !important;
+    border-top: 4px solid @green !important;              
+}
+
+.main_section
+{
+    margin-top: 10px;
+    margin-left: @margin-left;
+    margin-right: @margin-right;
+    background: @light-gray;
+    border-radius: 8px;
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 7px 3px 2px #888888;
+    
+    .main_section_flex
+    {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .right_article_and_button
+        {
+            margin-left: 20px;
+            width: 50%;
+            min-width: 300px;
+            flex-grow: 1;
+            .main_article_h1
+            {
+                font-family: @header-font;
+                font-size: 72px;
+                color: @green;
+                margin-top: 0px;
+                margin-bottom: -10px;
+            }
+            .main_article_h3
+                        {       
+                font-family: @header-font_light;
+                font-size: 25px;
+                color: @green;
+                margin-top: 0px;
+            }            
+        }        
+        .main_img
+                {
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 3px;
+            flex-grow: 1;
+            width: 45%;
+            height: 30%; 
+            min-width: 300px;
+            min-height: 200px;
+        }
+        .main_why_article_btn
+                {
+            width: 95%;
+            height: 50px;
+            flex-grow: 1;
+            
+           /* background: @dark-gray;*/
+            background: linear-gradient(to top, @dark-gray 0%, @gray 100%);
+            font-size: 16px; /* Размер шрифта */
+            padding: 10px 20px; /* Поля вокруг текста */
+            color: #fff; /* Цвет текста */
+            border-radius: 8px; /* Радиус скругления */
+             
+            /*transition: 500ms;*/  
+        } 
+        .main_why_article_btn:hover
+                {
+           /* background: @gray;*/
+            background: linear-gradient(to top, @gray 0%, @light-gray 100%);
+        }
+    } 
+    .motivation_string_article
+        {
+        font-weight: bold;
+        font-family: @motivation-font;
+        color: @green;
+        margin-top: 0px;
+        margin-left: 10px;
+    }
+}
+
+.main_footer_section
+{
+    margin-top: 10px;
+    margin-left: @margin-left;
+    margin-right: @margin-right;    
+    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    .main_article_footer
+    {
+        width: 30%;
+        min-width: 200px;
+        flex-grow: 1;
+        margin-left: 10px;
+        padding-left: 10px; /* Расстояние между линией и текстом */
+        border-left: 2px solid @light-gray;
+        border-right: 2px solid @light-gray;
+    }
+    
+    .main_article_h4
+        {           
+        font-family: @header-font_light;
+        font-size: 20px;
+        color: @green;
+        margin-top: 0px;
+    }
+}

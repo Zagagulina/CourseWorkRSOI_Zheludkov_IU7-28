@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+    web:
+        build: .
+        command: python -u servicePublisher/server.py
+        ports:
+            - "1000:1000"
+        container_name: publisher_web
+        
+    db:
+        image: mongo
+        ports:
+            - "27019:27017"
+        container_name: publisher_mongo
+     
+networks:
+    default:
+        external:
+            name: bibliography-net

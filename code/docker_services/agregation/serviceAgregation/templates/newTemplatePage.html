@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "template_main_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">{{ articleText }}</h2>
+            <div class = "main_text">
+                {{ articleHelp }}
+                Под расширенными регулярными выражениями подразумевается сандартный синтаксис
+                регулярных выражений, дополненный заготовками в фигурных скобках, которые можно вставлять в любое место
+                строки. Количество пробелов, где они позволяются, всегда варьируется от 1 до 3-х для избежания недоразумений.
+                Далее идёт список выражений с их расшифровкой после знака = (в кваратных скобках стоит необязательная часть):
+                <ul class="main_ul">
+                    <li class="main_ul_li">{Автор} = Текст с Большой буквы, пробел, Текст с Большой буквы, точка
+                    [Текст с Большой буквы, точка]</li>
+                    <li class="main_ul_li">{Авторы} = {Автор}, запятая, пробел (группа повторяется сколько угодно раз), {Автор}</li>
+                    <li class="main_ul_li">{Название} = Большая буква, любые символы (более одного), точка</li>
+                    <li class="main_ul_li">{Издательство} = Текст с большой буквы и символы '-' (всего не менее двух символов),
+                        [точка], :, пробел, любые символы (более одного), запятая</li>
+                    <li class="main_ul_li">{Год} = 4 цифры подряд</li>
+                    <li class="main_ul_li">{Количество страниц} = цыфры (неменее одной), пробел, символ 'c' или 'p' в русской
+                    или английской раскладках, точка</li>
+                    <li class="main_ul_li">{Число} = цыфры (неменее одной)</li>
+                    <li class="main_ul_li">{Дата} = цыфры (от 1 до 4-х), любой из символов '.' '/' '-', цыфры
+                        (от 1 до 4-х), любой из символов '.' '/' '-', цыфры (от 1 до 4-х)</li>
+                    <li class="main_ul_li">{url} = строка 'http[s]://www.', любые символы </li>
+                    <li class="main_ul_li">{.} = символ точки, как знака препинания (введён, так как в синтаксисе регулярных
+                        выражений символ '.' означает любой символ, кроме конца строки)</li>
+                </ul>
+                Хотим обратить внимание, что знание регулярных выражений для составления шаблона не требуется. Достаточно
+                конкретные символы писать в виде символов и использовать заготовки в нужных местах. Например, шаблон проверки
+                строки списка литературы может выглядеть так: {Автор}, Название: {Название}
+                {Издательство} {Количество страниц} {Год} {.}
+            </div>
+         </article>
+    </section>
+    <section class = "template_info_section">
+            <fieldset class = "total_fieldset">
+            <form class = "total_fieldset"   action="{{ create_new_template_url }}" method="post">
+                <input type="hidden" name="templateNum" value="{{templateNum}}" >
+                <dl>
+                <dt class = "template_info_section_dt">Введите строку шаблона в виде расширенных регулярных выражений:</dt>
+                    <dd class = "template_list_dd">
+                        <div class="error_text">{{ errors.reg }}</div>
+                        <input type="text" class="template_input" name="templateRegExp" value="{{ templateRegExp }}">
+                    </dd>
+                <dt class = "template_info_section_dt">Введите строку с поясненим шаблона и примером списка литературы,
+                    удовлетворяющего этому шаблону:</dt>
+                    <dd class = "template_list_dd">
+                         <div class="error_text">{{ errors.example }}</div>
+                         <textarea class = "template_input"
+                                      name = "templateExample" rows = 3 cols = 50
+                                      >{{ templateExample }}</textarea>
+                    </dd>
+                <dt class = "template_info_section_dt">Введите ключевые слова в виде расширенных регулярных
+                выражений</dt>
+                    <dd class = "main_text">
+                        ВНИМАНИЕ! Ключевые слова надо вводить без нумерации. Каждое следующее ключевое слово надо
+                        вводить с новой строки!
+                            <textarea class = "template_input"
+                                      name = "keywords" rows = 7 cols = 50
+                                      wrap = 'off'
+                                      >{{ templateKeywords }}</textarea>
+                    </dd>
+                <dt class = "template_info_section_dt">Выберите требуемое действие</dt>
+                    <dd class = "main_text">
+                        <input class = "user_btn" type="submit" value="{{ button_text }}">
+                    </dd>
+                </dl>
+            </form>
+            <dl>
+            <dd class = "main_text">
+                <form action="{{ last_url }}" method="get">
+                    <input class = "user_btn" type="submit" value="Назад" />
+                </form>
+            </dd>
+            </dl>
+            </fieldset>
+    </section>
+{% endblock %}

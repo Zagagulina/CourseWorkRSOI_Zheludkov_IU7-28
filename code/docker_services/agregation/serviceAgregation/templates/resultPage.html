@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "check_main_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Результаты проверки списка литературы</h2>
+            <p class = "main_text">
+                На данной странице представлены результаты проверки списка литерату на соответсвие
+                правилам оформления издательства. Нажмите левой кнопкой мыши на
+                строке для получений подробной информации о её проверке.
+            </p>
+         </article>
+    </section>
+    <section class = "check_info_section" ng-controller = "resultController" id = 'angularInit'
+             ng-init="pId = '{{ publiserId }}'; showLen = {{resAnswer|length}}">
+    <dl>
+                <dt class = "check_info_section_dt">Информация о выбранном издателе:</dt>
+                        <ul class = "main_ul" ng-show="showInfo == true">
+                            <li class = "main_ul_li" ng-if="selected.name">Имя: // selected.name //</li>
+                            <li class = "main_ul_li" ng-if="selected.address">Адрес: // selected.address //</li>
+                            <li class = "main_ul_li" ng-if="selected.phoneNumber">Телефон: // selected.phoneNumber //</li>
+                            <li class = "main_ul_li" ng-if="selected.email">Email: // selected.email //</li>
+                            <li class = "main_ul_li" ng-if="selected.URL">Сайт:
+                                <a href="// selected.URL //">// selected.URL //</a>
+                            </li>
+                            <li class = "main_ul_li" ng-if="selected.textRule">Правила оформления:
+                                <a href="// selected.textRule //">// selected.textRule //</a>
+                            </li>
+                        </ul>
+                <dt class = "check_info_section_dt">Результаты проверки:</dt>
+                    {% if resAnswer|length > 0 %}
+                        {% for el in resAnswer %}
+                            <div class = 'answer_text'>
+                            <dd class = '{{el}}_answer' ng-click="show({{loop.index0}})">
+                                     {{ loop.index }}) {{ bList[loop.index0].text }}
+                            </dd>
+                            </div>
+                            <dd class="main_text more_info_hide" ng-show="hideArray[{{loop.index0}}]">
+                                {{ resMessage[loop.index0][0] }}
+                                <ul class = "main_ul">
+                                    {% for elIs in resIs[loop.index0] %}
+                                        <li class = "main_ul_li">{{ elIs }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% if resShould|length > 0 %}
+                                    {{ resMessage[loop.index0][1] }}
+                                    <ul class = "main_ul">
+                                        {% for elShould in resShould[loop.index0] %}
+                                            <li class = "main_ul_li">{{ elShould }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </dd>
+                        {% endfor %}
+                    {% else %}
+                        <div class="main_text">У выбранного издателя на текущий момент нет шаблонов проверки!</div>
+                    {% endif %}
+                <dt class = "check_info_section_dt">Выберите требуемое действие</dt>
+                    <dd class = "main_text">
+                        <form action="{{ last_url }}" method="get">
+                                <input class = "user_btn" type="submit" value="Назад" />
+                        </form>
+                    </dd>
+    </dl>
+    </section>
+{% endblock %}

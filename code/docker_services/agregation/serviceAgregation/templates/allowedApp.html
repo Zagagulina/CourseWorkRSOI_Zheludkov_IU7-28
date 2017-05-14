@@ -1,0 +1,20 @@
+﻿{% extends "base.html" %}
+{% block content %}
+    <section class = "authorized_section">
+        <h2 class = "main_article_h2">{{ appText }}</h2>
+        <form action="" method="post" name="login">
+            {{form.hidden_tag()}}
+            <fieldset class = "authorized_fieldset">
+                <legend class = "authorized_fieldset_legend">Введите слово allow в поле ниже:</legend>
+                <p class = "main_text error_text">
+                    {{ message }}
+                </p>
+                <div class="authorized_fieldset_text">
+                    Разрешить доступ: <div class="error_text">{{ form.errors.notRobot }}</div>
+                    {{ form.notRobot(class = "access_input", size = 20) }}<br>
+                </div>
+            </fieldset>
+            <input class = "authorized_btn" type=submit value="Разрешить доступ">
+        </form>
+    </section>
+{% endblock %}

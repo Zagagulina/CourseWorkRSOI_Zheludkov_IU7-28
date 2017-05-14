@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "template_main_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Редактирование шаблонов</h2>
+            <p class = "main_text">
+                Для редактирования шаблона Вам необходимо выбрать его из списка и нажать кнопку "Редактировать"
+                или "Удалить" в зависимости от того, что вы хотите сделать. Для создания нового шаблона можно
+                просто нажать кнопку "Создать новый шаблон"
+            </p>
+         </article>
+    </section>
+    <section class = "template_info_section" ng-controller = "templateChooseController" id = 'templateChooseInit'
+             ng-init="pId = '{{ publiserId }}'">
+            <fieldset class = "total_fieldset" ng-disabled="waiting">
+            <form class = "total_fieldset" action="{{ edit_url }}" method="get">
+                <dl>
+                <dt class = "template_info_section_dt">Выберите шаблон из списка:</dt>
+                <div class="error_text" ng-hide="show">"У вас пока нет ни одного шаблона!"</div>
+                <div class="template_area" ng-show="show">
+                    <dd class = "template_list_dd">
+                        <select class = "template_list" size="// size //"
+                                ng-model="selected"
+                                ng-options="el as el.templateNum for el in TemplateList">
+                        </select>
+                        <input type="hidden" name="selectedTemplate" value="//selected.templateNum//" >
+                    </dd>
+                    <dd class="template_info">
+                        Информация о выбранном шаблоне:
+                        <ul class = "main_ul">
+                            <li class = "template_li" ng-if="selected.templateNum">Номер: // selected.templateNum //</li>
+                            <li class = "template_li" ng-if="selected.templateInsideRegExp">Выражение: // selected.templateInsideRegExp //</li>
+                            <li class = "template_li" ng-if="selected.templateExample">Текстовое описание с примером: // selected.templateExample //</li>
+                            <li class = "main_ul_li" ng-if="selected.templateInsideKeyword">Ключевые слова:
+                                <ul class = "main_ul">
+                                    <li class = "main_ul_li" data-ng-repeat="el in selected.templateInsideKeyword">
+                                        // el //
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </dd>
+                </div>
+                <dt class = "template_info_section_dt">Выберите требуемое действие</dt>
+                    <dd class = "main_text" ng-show="show">
+                        <input class = "user_btn" type="submit" name="edit"
+                               value="Редактировать выбранный шаблон">
+                        <input class = "user_btn" type="submit" name = 'del'
+                               value="Удалить выбранный шаблон">
+                    </dd>
+                </dl>
+            </form>
+            <dl>
+                <dd class = "main_text">
+                    <form action="{{ new_template_url }}" method="get">
+                        <input class = "user_btn" type="submit" value="Создать новый шаблон" />
+                    </form>
+                    <form action="{{ last_url }}" method="get">
+                        <input class = "user_btn" type="submit" value="Назад" />
+                    </form>
+                </dd>
+            </dl>
+            </fieldset>
+    </section>
+{% endblock %}

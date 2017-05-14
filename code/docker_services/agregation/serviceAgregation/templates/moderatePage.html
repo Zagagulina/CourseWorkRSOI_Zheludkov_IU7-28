@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "moderate_main_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Модерация издателей</h2>
+            <p class = "main_text">
+                На этой странице вы можете добавиь или убрать издательства из списка, доступного
+                пользователям при использовании сервиса.
+            </p>
+         </article>
+    </section>
+    <section class = "moderate_info_section" ng-controller = "moderatedController">
+            <fieldset class = "total_fieldset" ng-disabled="waiting">
+            <form class = "total_fieldset" ng-submit="postData()">
+                <dl>
+                <dt class = "info_section_dt">Выберите издателя из списка:</dt>
+                <div class="publiher_area">
+                    <dd class = "publisher_list_dd">
+                        Список издателей, не прошедших модерацию:
+                        <select class = "publisher_list" size="// size //"
+                                ng-model="selected"
+                                ng-options="el as el.name for el in PublishersList">
+                        </select>
+                    </dd>
+                    <dd class = "publisher_list_dd">
+                        Список издателей, прошедших модерацию:
+                        <select class = "publisher_list" size="// size //"
+                                ng-model="selected"
+                                ng-options="el as el.name for el in PublishersListM">
+                        </select>
+                    </dd>
+                </div>
+                    <dd class = "main_text">
+                        <div ng-show="selected == null">Не выбран ни один издатель!</div>
+                        <button ng-disabled="selected == null"
+                                class = "user_btn"
+                                type="button" id="move_btn"
+                                ng-click="move()">Переместить выбранный элемент в другой список</button>
+                    </dd>
+                 <dt class = "info_section_dt">Информация о выбранном издателе:</dt>
+                    <dd class="publisher_info">
+                        <ul class = "main_ul">
+                            <li class = "main_ul_li" ng-if="selected.name">Имя: // selected.name //</li>
+                            <li class = "main_ul_li" ng-if="selected.address">Адрес: // selected.address //</li>
+                            <li class = "main_ul_li" ng-if="selected.phoneNumber">Телефон: // selected.phoneNumber //</li>
+                            <li class = "main_ul_li" ng-if="selected.email">Email: // selected.email //</li>
+                            <li class = "main_ul_li" ng-if="selected.URL">Сайт:
+                                <a href="// selected.URL //">// selected.URL //</a>
+                            </li>
+                            <li class = "main_ul_li" ng-if="selected.textRule">Правила оформления:
+                                <a href="// selected.textRule //">// selected.textRule //</a>
+                            </li>
+                        </ul>
+                    </dd>
+                <dt class = "info_section_dt">Информация о шаблонах, выбранного издателя:</dt>
+                    <div class="main_text" ng-hide="showT">У данного издателя пока нет ни одного шаблона!</div>
+                    <div class="template_area" ng-show="showT">
+                        <dd class = "template_list_dd">
+                            Выберите шаблон издателя из списка:
+                            <select class = "template_list" size="// size //"
+                                    ng-model="selectedTemplate"
+                                    ng-options="el as el.templateNum for el in TemplateList">
+                            </select>
+                        </dd>
+                        <dd class="template_info">
+                            Информация о выбранном шаблоне:
+                            <ul class = "main_ul">
+                                <li class = "template_li" ng-if="selectedTemplate.templateNum">Номер: // selectedTemplate.templateNum //</li>
+                                <li class = "template_li" ng-if="selectedTemplate.templateInsideRegExp">Выражение: // selectedTemplate.templateInsideRegExp //</li>
+                                <li class = "template_li" ng-if="selectedTemplate.templateExample">Текстовое описание с примером: // selectedTemplate.templateExample //</li>
+                                <li class = "main_ul_li" ng-if="selectedTemplate.templateInsideKeyword">Ключевые слова:
+                                    <ul class = "main_ul">
+                                        <li class = "main_ul_li" data-ng-repeat="el in selectedTemplate.templateInsideKeyword">
+                                            // el //
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                    </div>
+                <dt class = "info_section_dt">Выберите требуемое действие</dt>
+                    <dd class = "main_text">
+                        <div ng-show="(PublishersListID.length == 0) && (PublishersListModeratedID.length == 0)">
+                            Пока что ничего не изменилось!</div>
+                        <input ng-disabled="(PublishersListID.length == 0) && (PublishersListModeratedID.length == 0)"
+                                class = "user_btn" type="submit" id="submit"  value="Сохранить изменения!">
+                    </dd>
+                </dl>
+            </form>
+            <dl>
+            <dd class = "main_text">
+                <form action="{{ last_url }}" method="get">
+                    <input class = "user_btn" type="submit" value="Назад" />
+                </form>
+            </dd>
+            </dl>
+            </fieldset>
+    </section>
+{% endblock %}

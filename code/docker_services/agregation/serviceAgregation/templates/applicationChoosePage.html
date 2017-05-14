@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "template_main_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Регистрация приложений для OAuth2.0</h2>
+            <p class = "main_text">
+                На данной странице Вы можете добавлять приложения, которым разрешено работать с системой
+                через OAuth2.0 или наоборот ислючать их из списка.
+            </p>
+         </article>
+    </section>
+    <section class = "template_info_section" ng-controller = "applicationChooseController" id = 'applicationChooseInit'>
+            <fieldset class = "total_fieldset" ng-disabled="waiting">
+            <form class = "total_fieldset" action="{{ edit_url }}" method="get">
+                <dl>
+                <dt class = "template_info_section_dt">Выберите приложение из списка:</dt>
+                <div class="error_text" ng-hide="show">"Пока нет ни одного приложения!"</div>
+                <div class="template_area" ng-show="show">
+                    <dd class = "template_list_dd">
+                        <select class = "template_list" size="// size //"
+                                ng-model="selected"
+                                ng-options="el as el.appName for el in appList">
+                        </select>
+                        <input type="hidden" name="selectedApp" value="//selected.appKey//" >
+                    </dd>
+                    <dd class="template_info">
+                        Информация о выбранном приложении:
+                        <ul class = "main_ul">
+                            <li class = "template_li" ng-if="selected.appName">Название приложения: // selected.appName //</li>
+                            <li class = "template_li" ng-if="selected.appRedirect">Ссылка для получения токена: // selected.appRedirect //</li>
+                            <li class = "template_li" ng-if="selected.appKey">Ключ приложения: // selected.appKey //</li>
+                        </ul>
+                    </dd>
+                </div>
+                <dt class = "template_info_section_dt">Выберите требуемое действие</dt>
+                    <dd class = "main_text" ng-show="show">
+                        <input class = "user_btn" type="submit" name = 'del'
+                               value="Удалить выбранное приложение">
+                    </dd>
+                </dl>
+            </form>
+            <dl>
+                <dd class = "main_text">
+                    <form action="{{ new_app_url }}" method="get">
+                        <input class = "user_btn" type="submit" value="Добавить новое приложение" />
+                    </form>
+                    <form action="{{ last_url }}" method="get">
+                        <input class = "user_btn" type="submit" value="Назад" />
+                    </form>
+                </dd>
+            </dl>
+            </fieldset>
+    </section>
+{% endblock %}

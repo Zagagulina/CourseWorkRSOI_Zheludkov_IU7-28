@@ -1,0 +1,47 @@
+﻿{% extends "base.html" %}
+{% block content %}
+     <section class = "base_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Изменение информации об узлах системы!</h2>
+            <p class = "main_text">
+                На данной странице Вы можете сконфигурировать узлы системы.
+            </p>
+         </article>
+    </section>
+    <section class = "config_section">
+        <dl>
+            <dt class = "config_section_dt">Расположение узлов системы:</dt>
+                <dd class = "main_text">
+                    <form action="{{ configNodesUrl }}" method="post" name="config">
+                        {{formNode.hidden_tag()}}
+                        <fieldset class = "config_fieldset">
+                            <legend class = "config_fieldset_legend">URL адреса узлов системы:</legend>
+                                <div class="config_fieldset_text">
+                                    Подсистема издателей*: <div class="error_text">{{ formNode.errors.urlServicePublisher }}</div>
+                                    {{ formNode.urlServicePublisher(class = "url_input", size = 80) }}<br><br>
+
+                                    Подсистема шаблонов*: <div class="error_text">{{ formNode.errors.urlServiceTemplate }}</div>
+                                    {{ formNode.urlServiceTemplate(class = "url_input", size = 80) }}<br><br>
+
+                                    Подсистема сессии*: <div class="error_text">{{ formNode.errors.urlServiceUser }}</div>
+                                    {{ formNode.urlServiceUser(class = "url_input", size = 80) }}<br><br>
+
+                                    Подсистема проверки списка литературы*:
+                                    <div class="error_text">{{ formNode.errors.urlServiceController }}</div>
+                                    {{ formNode.urlServiceController(class = "url_input", size = 80) }}<br><br>
+                                </div>
+                                <p class="main_text">* отмечены поля, обязательные для заполнения</p>
+                        </fieldset>
+                        <input class = "config_btn" type=submit value="Применить">
+                        <input class = "config_btn" type=reset value="Начать с начала">
+                    </form>
+                </dd>
+            <dt class = "config_section_dt">Выберите требуемое действие</dt>
+                <dd class = "main_text">
+                    <form action="{{ last_url }}" method="get">
+                        <input class = "config_btn" type="submit" value="Назад" />
+                    </form>
+                </dd>
+        </dl>
+    </section>
+{% endblock %}

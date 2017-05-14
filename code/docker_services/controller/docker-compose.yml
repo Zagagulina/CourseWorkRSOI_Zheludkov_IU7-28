@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    web:
+        build: .
+        command: python -u serviceController/server.py
+        ports:
+            - "3000:3000"
+        container_name: controller_web
+     
+networks:
+    default:
+        external:
+            name: bibliography-net

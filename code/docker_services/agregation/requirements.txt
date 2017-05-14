@@ -1,0 +1,6 @@
+flask
+mongoengine
+bcrypt
+flask-wtf
+pycrypto
+crypto

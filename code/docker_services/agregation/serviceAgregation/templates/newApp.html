@@ -1,0 +1,50 @@
+﻿{% extends "base.html" %}
+{% block content %}
+     <section class = "user_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Регистрация нового приложения</h2>
+            <p class = "main_text">
+                На данной странице Вы можете зарегистрировать приложение, которому будет разрешено работать с
+                с системой через OAuth2.0
+            </p>
+         </article>
+    </section>
+    <section class = "app_section">
+        <dl>
+            <dt class = "info_section_dt">Информация о приложении:</dt>
+                <dd class = "main_text">
+                    {% if newShow == True %}
+                        <form action="{{ newAppUrl }}" method="post" name="newApp">
+                            {{formApp.hidden_tag()}}
+                            <fieldset class = "app_fieldset">
+                                <legend class = "app_fieldset_legend">Необходимая информация:</legend>
+                                    <div class="app_fieldset_text">
+                                        <p class = "main_text error_text">
+                                            {{ messageApp }}
+                                        </p>
+                                        Название приложения*: <div class="error_text">{{ formApp.errors.appName }}</div>
+                                        {{ formApp.appName(class = "other_input", size = 80) }}<br><br>
+
+                                        Ссылка для получения токена*:<div class="error_text">{{ formApp.errors.appUrl }}</div>
+                                        {{ formApp.appUrl(class = "other_input", size = 80) }}<br><br>
+                                    </div>
+                                    <p class="main_text">* отмечены поля, обязательные для заполнения</p>
+                            </fieldset>
+                                <input class = "app_btn" type=submit value="Применить">
+                                <input class = "app_btn" type=reset value="Начать с начала">
+                        </form>
+                     {% else %}
+                        <p class = "main_text complete_text">
+                            {{ messageApp }}
+                        </p>
+                     {% endif %}
+                </dd>
+            <dt class = "info_section_dt">Выберите требуемое действие</dt>
+                <dd class = "main_text">
+                    <form action="{{ last_url }}" method="get">
+                        <input class = "user_btn" type="submit" value="Назад" />
+                    </form>
+                </dd>
+        </dl>
+    </section>
+{% endblock %}

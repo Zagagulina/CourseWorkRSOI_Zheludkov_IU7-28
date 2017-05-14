@@ -1,0 +1,96 @@
+@nav_color_black: #000000;
+@gray: #a7a7a7;
+@green: #72AB00;
+@light-gray: #eaeaea;
+@header-font: 'Helvetica Bold';
+@header-font_light: 'Helvetica Light';
+@text_color: #494949;
+@margin-left: 12%;
+@margin-right: 12%;
+
+body {
+  margin: 0;  
+  min-width: 420px;
+}
+
+.main_text, .main_ul
+{
+    font-family: @header-font_light;
+    font-size: 18px;
+    color: @text_color;
+}
+
+.main_nav 
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-grow: 1;
+    color: #494949;
+
+    /*position: fixed; /*--Fix the sidenav to stay in one spot--*/
+    /*float: left; /*--Keeps sidenav into place when Fixed positioning fails--*/
+    background-color : @nav_color_black;  
+    .main_header
+    {
+        width: 40%;
+        .main_h2
+        {               
+            margin-top: 0;
+            font-family: @header-font;
+            font-size: 300%;
+            :first-child
+            {
+                 color : @green;
+            }
+            color : @gray;
+            text-decoration: none;
+        }
+        .main_h3
+                {
+            font-family: @header-font_light;
+            font-size: 200%;
+            color : @green;
+            text-decoration: none;
+        }
+    } 
+    .nav_a
+        {
+        margin-top: 35px;
+        a
+        {
+            color : @gray;
+            font-size: 120%;
+            font-family: @header-font_light;
+            text-decoration: none;
+            border-top: 2px solid @gray;
+        } 
+        a:hover
+                {
+            color : @green;
+            font-size: 120%;
+            font-family: @header-font_light;
+            text-decoration: none;
+            border-top: 4px solid @green;            
+       }      
+    }      
+}
+
+.main_footer
+{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    
+    font-family: @header-font_light;
+    font-size: 17px;
+    color: @text_color;
+    margin-top: 50px;
+    
+    border-top: 2px solid @light-gray;
+    .main_footer_text
+    {
+        margin-left: @margin-left;
+    }
+}

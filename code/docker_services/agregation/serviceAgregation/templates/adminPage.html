@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "user_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Это страница администратора!</h2>
+            <p class = "main_text">
+                Здесь вы можете выполнять модерацию зарегистрированных издателей, конфигурировать узлы системы и
+                изменять информацию о доверенных приложениях.
+            </p>
+         </article>
+    </section>
+    <section class = "user_info_section">
+        <dl class = "user_info_section_dl">
+            <dt class = "user_info_section_dt">Доступные Вам действия</dt>
+            <dd class = "main_text">
+                <div class = "main_text">Здесь мы перечислям те возможности, которые можем предложить:</div>
+                <div>
+                    <form action="{{ ref_chenge_Info }}" method="get">
+                        <input class = "user_btn" type="submit" value="Изменить информацию о себе" />
+                    </form>
+                    <form action="{{ ref_moderate }}" method="get">
+                        <input class = "user_btn" type="submit" value="Модерация издательств" />
+                    </form>
+                    <form action="{{ ref_configNodes }}" method="get">
+                        <input class = "user_btn" type="submit" value="Конфигурирование узлов системы" />
+                    </form>
+                    <form action="{{ ref_app }}" method="get">
+                        <input class = "user_btn" type="submit" value="Регистрация приложения для OAuth2.0" />
+                    </form>
+                    <form action="{{ ref_logout }}" method="get">
+                        <input class = "user_btn" type="submit" value="Выйти из системы" />
+                    </form>
+                </div>
+            </dd>
+        </dl>
+    </section>
+{% endblock %}

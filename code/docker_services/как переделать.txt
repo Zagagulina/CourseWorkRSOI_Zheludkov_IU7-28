@@ -1,0 +1,27 @@
+1) в server 
+1.1) изменить path_log на 'log' + get_str_date_tyme() + '.txt'
+1.2) host = '0.0.0.0', port = 5000, debug = True,
+
+2) в model 
+import os
+
+connect('mongoNodeDb', host = 'agregation_mongo', port = 27017)
+
+3) Адреса серверов поменять!!!
+
+4) URL валидаторы убрать, так как в доккере url типо
+ 'http://agregation_bibliography_web:5000/' и они считаются не корректными!
+
+5) redirect только!!! на неполный адрес
+
+def redirect_back():
+    if ('last_url' in session):
+        url = session['last_url'][-1]
+        return redirect(url)
+    return redirect('/')
+
+def go_to_auth(request):
+    return redirect('/auth')
+
+def get_current_url():  --- так нельзя, ибо тогда пост запросы не пройдут!!!
+    return '/' 

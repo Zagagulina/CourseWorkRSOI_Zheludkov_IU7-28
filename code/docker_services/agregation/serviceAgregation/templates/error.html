@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "error_section">
+        <h2 class = "main_article_h2" style = "color : red">{{ error_text }}</h2>
+        <form action="{{ ref_main }}" method="get">
+            <input class = "error_btn" type="submit" value="Перейти на главную страницу" />
+        </form>
+    </section>
+{% endblock %}

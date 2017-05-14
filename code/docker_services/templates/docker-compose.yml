@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+    web:
+        build: .
+        command: python -u serviceTemplate/server.py
+        ports:
+            - "2000:2000"
+        container_name: templates_web
+
+    db:
+        image: mongo
+        ports:
+            - "27021:27017"
+        container_name: templates_mongo
+     
+networks:
+    default:
+        external:
+            name: bibliography-net

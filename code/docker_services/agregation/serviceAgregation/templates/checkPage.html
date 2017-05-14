@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class = "check_main_section">
+        <article class = "main_article">
+            <h2 class = "main_article_h2">Проверка списка литературы</h2>
+            <p class = "main_text">
+                Для проверки списка литературы Вам необходимо выбрать издателя из списка издателей,
+                скопировать ваш библиографический список в соответсвующее поле ввода без нумерации
+                работ так, чтобы каждая ссылка начиналась с новой строки, и нажать кнопку "Приверить".
+            </p>
+         </article>
+    </section>
+    <section class = "check_info_section" ng-controller = "checkController">
+            <fieldset class = "total_fieldset" ng-disabled="waiting">
+            <form class = "total_fieldset"   action="{{ check_url }}" method="post">
+                <dl>
+                <dt class = "publisher_info_section_dt">Выберите издателя из списка:</dt>
+                <div class="publiher_area">
+                    <dd class = "publisher_list_dd">
+                        <select class = "publisher_list" size="// size //"
+                                ng-model="selected"
+                                ng-options="el as el.name for el in PublishersList">
+                        </select>
+                        <input type="hidden" name="selectedPublisher" value="//selected.id//" >
+                    </dd>
+                    <dd class="publisher_info">
+                        Информация о выбранном издателе:
+                        <ul class = "main_ul">
+                            <li class = "main_ul_li" ng-if="selected.name">Имя: // selected.name //</li>
+                            <li class = "main_ul_li" ng-if="selected.address">Адрес: // selected.address //</li>
+                            <li class = "main_ul_li" ng-if="selected.phoneNumber">Телефон: // selected.phoneNumber //</li>
+                            <li class = "main_ul_li" ng-if="selected.email">Email: // selected.email //</li>
+                            <li class = "main_ul_li" ng-if="selected.URL">Сайт:
+                                <a href="// selected.URL //">// selected.URL //</a>
+                            </li>
+                            <li class = "main_ul_li" ng-if="selected.textRule">Правила оформления:
+                                <a href="// selected.textRule //">// selected.textRule //</a>
+                            </li>
+                        </ul>
+                    </dd>
+                </div>
+                <dt class = "publisher_info_section_dt">Введите список литературы для проверки</dt>
+                    <dd class = "main_text">
+                        ВНИМАНИЕ! Список литературы надо вводить без нумерации. Каждая следующая позиция в списке
+                        должна начинаться с новой строки!
+                        <div class = "bibliography_list">Список литературы: <br>
+                            <textarea class = "bibliography_input"
+                                      name = "bibliography" rows = 7 cols = 50
+                                      wrap = 'off'
+                                      ng-model="bibliography"></textarea>
+                        </div>
+                    </dd>
+                <dt class = "publisher_info_section_dt">Выберите требуемое действие</dt>
+                    <dd class = "main_text">
+                        <div ng-show="bibliography.length == 0">Нечего проверять! Список литературы пуст!</div>
+                        <div ng-show="selected == null">Выберите издателя из списка!</div>
+                        <input class = "user_btn" type="submit"
+                                ng-disabled="(bibliography.length == 0) || (selected == null)" value="Проверить список литературы">
+                    </dd>
+                </dl>
+            </form>
+            <dl>
+            <dd class = "main_text">
+                <form action="{{ last_url }}" method="get">
+                    <input class = "user_btn" type="submit" value="Назад" />
+                </form>
+            </dd>
+            </dl>
+            </fieldset>
+    </section>
+{% endblock %}

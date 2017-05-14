@@ -1,0 +1,98 @@
+.nav_main {
+  color: #72AB00 !important;
+  border-top: 4px solid #72AB00 !important;
+}
+.main_section {
+  margin-top: 10px;
+  margin-left: 12%;
+  margin-right: 12%;
+  background: #eaeaea;
+  border-radius: 8px;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 7px 3px 2px #888888;
+}
+.main_section .main_section_flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.main_section .main_section_flex .right_article_and_button {
+  margin-left: 20px;
+  width: 50%;
+  min-width: 300px;
+  flex-grow: 1;
+}
+.main_section .main_section_flex .right_article_and_button .main_article_h1 {
+  font-family: 'Helvetica bold';
+  font-size: 72px;
+  color: #72AB00;
+  margin-top: 0px;
+  margin-bottom: -10px;
+}
+.main_section .main_section_flex .right_article_and_button .main_article_h3 {
+  font-family: 'Helvetica Light';
+  font-size: 25px;
+  color: #72AB00;
+  margin-top: 0px;
+}
+.main_section .main_section_flex .main_img {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 3px;
+  flex-grow: 1;
+  width: 45%;
+  height: 30%;
+  min-width: 300px;
+  min-height: 200px;
+}
+.main_section .main_section_flex .main_why_article_btn {
+  width: 95%;
+  height: 50px;
+  flex-grow: 1;
+  /* background: @dark-gray;*/
+  background: linear-gradient(to top, #5a5a5a 0%, #a7a7a7 100%);
+  font-size: 16px;
+  /* ������ ������ */
+  padding: 10px 20px;
+  /* ���� ������ ������ */
+  color: #fff;
+  /* ���� ������ */
+  border-radius: 8px;
+  /* ������ ���������� */
+  /*transition: 500ms;*/
+}
+.main_section .main_section_flex .main_why_article_btn:hover {
+  /* background: @gray;*/
+  background: linear-gradient(to top, #a7a7a7 0%, #eaeaea 100%);
+}
+.main_section .motivation_string_article {
+  font-weight: bold;
+  font-family: 'Segoe Print';
+  color: #72AB00;
+  margin-top: 0px;
+  margin-left: 10px;
+}
+.main_footer_section {
+  margin-top: 10px;
+  margin-left: 12%;
+  margin-right: 12%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.main_footer_section .main_article_footer {
+  width: 30%;
+  min-width: 200px;
+  flex-grow: 1;
+  margin-left: 10px;
+  padding-left: 10px;
+  /* ���������� ����� ������ � ������� */
+  border-left: 2px solid #eaeaea;
+  border-right: 2px solid #eaeaea;
+}
+.main_footer_section .main_article_h4 {
+  font-family: 'Helvetica Light';
+  font-size: 20px;
+  color: #72AB00;
+  margin-top: 0px;
+}
