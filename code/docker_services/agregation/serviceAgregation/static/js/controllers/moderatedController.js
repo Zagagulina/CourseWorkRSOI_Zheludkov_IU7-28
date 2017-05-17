@@ -126,7 +126,7 @@ angular.module('BibliographyChecker')
                 notModerated: $scope.PublishersListID,
                 moderated: $scope.PublishersListModeratedID
             };        
-        $http.post("/moderateSaveChange", data)
+        $http.post("/moderate", data)
               .then(function(response) {
                   $scope.PublishersListID.length = 0;
                   $scope.PublishersListModeratedID.length = 0;

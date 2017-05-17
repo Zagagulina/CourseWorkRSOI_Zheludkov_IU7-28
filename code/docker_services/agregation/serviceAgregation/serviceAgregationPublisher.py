@@ -106,10 +106,7 @@ def publisher_edit_info_api():
 def moderate_publishers():
     logging.info("get /publishersNotModerated call")
     try:
-        if (test_token_in_session_light(get_key()) == False):
-            raise Exception("Incorrect token! Try to refresh it!")
-
-        token = get_tok_from_session(get_key())
+        token = get_token_from_header(request)
         if (is_token_valid(token, 'admin') == False):
             raise Exception('Only admin allow to make such acton!')
 

@@ -106,7 +106,7 @@ def publisherEditAuth():
         '''session.clear()'''
         return create_error_page(exc.args[0])
 
-@serviceInterface.route('/publisherEditInfo', methods=['POST'])
+@serviceInterface.route('/publisherEditInfoPage', methods=['POST'])
 def publisherEditInfo():
     ignore_current_url_as_last()
     try:
@@ -203,7 +203,7 @@ def create_publisher_page(messageInfo = '', messageAuth = ''):
                            formInfo=formInfo,
                            formAuth=formAuth,
                            editAuthUrl = '/editAuth',
-                           editInfoUrl= '/publisherEditInfo',
+                           editInfoUrl= '/publisherEditInfoPage',
                            last_url=take_last_url())
 
 @serviceInterface.route('/publisherEditInfoPage', methods=['GET'])
@@ -485,11 +485,11 @@ def generate_new_template_page(templateInfo = None, errors = None):
                            last_url=take_last_url()
                            )
 
-@serviceInterface.route('/newTemplateCreate', methods=['POST'])
+@serviceInterface.route('/newTemplate', methods=['POST'])
 def newTemplateCreate():
     ignore_current_url_as_last()
     try:
-        logging.info("get /newTemplateCreate call")
+        logging.info("get /newTemplate call")
 
         if (test_token_in_session_light(get_key()) == False):
             return redirect('/authorize/' + get_key())
@@ -725,10 +725,10 @@ def moderate_template_show_page():
                                last_url=take_last_url()
                                )
 
-@serviceInterface.route('/moderateSaveChange', methods=['POST'])
+@serviceInterface.route('/moderate', methods=['POST'])
 def moderateTemplatesSave():
     try:
-        logging.info("get /moderateSaveChange call")
+        logging.info("post /moderate call")
 
         if (test_token_in_session_light(get_key()) == False):
             return redirect('/authorize/' + get_key())
