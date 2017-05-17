@@ -481,7 +481,7 @@ def generate_new_template_page(templateInfo = None, errors = None):
                            articleText = articleText,
                            articleHelp = articleHelp,
                            button_text = button_text,
-                           create_new_template_url= '/newTemplateCreate',
+                           create_new_template_url= '/newTemplate',
                            last_url=take_last_url()
                            )
 
